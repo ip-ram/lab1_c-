@@ -394,7 +394,7 @@ void Task4_5() {
 int * reverseBack (int arr[], int size) {
     int* new_arr = new int [size];
 
-    for (int i = 0, count = size; i < size; i++, count--) {
+    for (int i = 0, count = size-1; i < size; i++, count--) {
         new_arr[i] = arr[count];
     }
 
@@ -425,14 +425,17 @@ void Task4_7() {
 
 //task 20
 int * findAll (int arr[], int size, int x) {
-    int* new_arr = new int[size];
+    std::vector<int> new_vec;
     int count = 0;
     for (int i = 0; i < size; i++) {
         if (arr[i] == x) {
-            new_arr[count] = i;
+            new_vec.push_back(i);
             count++;
         }
     }
+    int size_vec = new_vec.size();
+    int* new_arr = new int[size_vec];
+    copy(new_vec.begin(), new_vec.end(), new_arr);
     return new_arr;
 }
 
@@ -454,8 +457,15 @@ void Task4_9() {
 
     int* arr = findAll(vec.data(), size_vec, x);
 
-    std::cout << "The all index number in array is: ";
+    int count = 0;
     for (int i = 0; i < size_vec; i++) {
+        if (vec[i] == x) {
+            count++;
+        }
+    }
+
+    std::cout << "The all index number in array is: ";
+    for (int i = 0; i < count; i++) {
         std::cout << arr[i] << " ";
     }
     std::cout << std::endl;
